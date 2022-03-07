@@ -491,10 +491,10 @@ class JIRA:
         LOG.setLevel(_logging.INFO if logging else _logging.CRITICAL)
         self.log = LOG
 
-        self._options: Dict[str, Any] = copy.copy(JIRA.DEFAULT_OPTIONS)
+        self._options: Dict[str, Any] = copy.deepcopy(JIRA.DEFAULT_OPTIONS)
 
-        if "headers" in options:
-            headers = copy.copy(options["headers"])
+        if "headers" not in options:
+            headers = copy.deepcopy(options["headers"])
             del options["headers"]
         else:
             headers = {}
