@@ -4,6 +4,7 @@ This module allows people to keep their jira server credentials outside their sc
 Also, this simplifies the scripts by not having to write the same initialization code for each script.
 
 """
+import copy
 import configparser
 import logging
 import os
@@ -120,7 +121,7 @@ def get_jira(
                 % __name__
             )
 
-    options = JIRA.DEFAULT_OPTIONS
+    options = copy.deepcopy(JIRA.DEFAULT_OPTIONS)
     options["server"] = url
     options["autofix"] = autofix
     options["appid"] = appid
